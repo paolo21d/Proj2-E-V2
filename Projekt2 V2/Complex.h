@@ -18,7 +18,7 @@ public:
 	Complex(const Complex &com) : re(com.re), im(com.im) {}//konstruktor kopiujacy
 	Complex(Tre r) : re(r), im(0) {};
 	~Complex() {
-		std::cout << "Destruktor." << std::endl;
+		//std::cout << "Destruktor." << std::endl;
 	}
 
 	Tre getRe() const {
@@ -83,6 +83,30 @@ public:
 		this->re = this->re * z.re - this->im * z.im;
 		this->im = this->re * z.im + this->im * z.re;
 		return *this;
+	}
+
+	//Operatory porownywania
+	bool operator< (const Complex<Tre, Tim>& z) const {
+		bool result = true;
+		if ((re >= z.re) && (re != z.re || im >= z.im)) {
+			result = false;
+		}
+		return result;
+	}
+	/*bool operator<(const Complex &z) {
+		if ((re < z.re) || (re == z.re && im < z.im))
+			return true;
+		else return false;
+	}
+	bool operator>(const Complex &z) {
+		if ((re > z.re) || (re == z.re && im > z.im))
+			return true;
+		else return false;
+	}*/
+	bool operator==(const Complex &z) {
+		if (re == z.re && im == z.im)
+			return true;
+		else return false;
 	}
 };
 
